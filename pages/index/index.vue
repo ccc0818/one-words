@@ -21,7 +21,7 @@ const authorRef = ref<string>('');
 getInfo().then(res => {
 	bgRef.value = res.image;
 	wordsRef.value = res.words;
-	authorRef.value = `--${res.author} 《${res.source}》`;
+	authorRef.value = `--${res.author} ${res.source.length ? `《${res.source}》` : ''}`;
 })
 
 </script>
