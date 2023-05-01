@@ -7,7 +7,7 @@ async function getWords() {
 
 async function getImage() {
 	return uni.request({
-		url: 'https://api.vvhan.com/api/view?type=json',
+		url: 'https://api.vvhan.com/api/bing?type=json',
 		method: 'GET'
 	});
 }
@@ -25,7 +25,7 @@ export async function getInfo() {
 			words: words.data.data.vhan,
 			source: words.data.data.source,
 			author: words.data.data.creator,
-			image: image.data.imgurl,
+			image: image.data.data.url,
 			date: new Date().toDateString(),
 		};
 

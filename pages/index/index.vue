@@ -1,6 +1,6 @@
 <template>
 	<view class="home-container">
-		<image :src="bgRef" mode="heightFix" class="bg"></image>
+		<image v-if="bgRef.length > 0" :src="bgRef" mode="heightFix" class="bg"></image>
 		<view class="words-container">
 			<text class="words">
 				{{ wordsRef }}\n
@@ -19,6 +19,7 @@ const wordsRef = ref<string>('');
 const authorRef = ref<string>('');
 
 getInfo().then(res => {
+	console.log(res);
 	bgRef.value = res.image;
 	wordsRef.value = res.words;
 	authorRef.value = `--${res.author} ${res.source.length ? `《${res.source}》` : ''}`;
@@ -32,6 +33,7 @@ getInfo().then(res => {
 	height: 100vh;
 	position: relative;
 	overflow: hidden;
+	background-color: #202020;
 
 	.bg {
 		position: absolute;
@@ -48,6 +50,7 @@ getInfo().then(res => {
 		width: 100%;
 		height: 50%;
 		bottom: 0;
+		// transform: translateY(50%);
 		backdrop-filter: blur(32px);
 		box-sizing: border-box;
 		padding: 40rpx;
