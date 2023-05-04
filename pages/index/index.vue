@@ -1,6 +1,6 @@
 <template>
 	<view class="home-container">
-		<image v-if="bgRef.length > 0" :src="bgRef" mode="heightFix" class="bg"></image>
+		<image :src="bgRef" mode="heightFix" class="bg"></image>
 		<view class="words-container">
 			<text class="words">
 				{{ wordsRef }}\n
@@ -14,15 +14,14 @@
 import { ref } from 'vue';
 import { getInfo } from '@/api';
 
-const bgRef = ref<string>('');
+const bgRef = ref<string>('https://picsum.photos/800/1600');
 const wordsRef = ref<string>('');
 const authorRef = ref<string>('');
 
+
 getInfo().then(res => {
-	console.log(res);
-	bgRef.value = res.image;
 	wordsRef.value = res.words;
-	authorRef.value = `--${res.author} ${res.source.length ? `《${res.source}》` : ''}`;
+	authorRef.value = `${res.source.length ? `--《${res.source}》` : ''}`;
 })
 
 </script>

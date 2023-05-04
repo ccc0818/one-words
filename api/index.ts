@@ -20,12 +20,11 @@ export async function getInfo() {
 	}
 
 	try {
-		const [words, image]: any[] = await Promise.all([getWords(), getImage()]);
+		const [words]: any[] = await Promise.all([getWords()]);
 		let res: IInfo = {
 			words: words.data.data.vhan,
 			source: words.data.data.source,
 			author: words.data.data.creator,
-			image: image.data.data.url,
 			date: new Date().toDateString(),
 		};
 
@@ -41,7 +40,7 @@ interface IInfo {
 	words: string;
 	source: string;
 	author: string;
-	image: string;
+	// image: string;
 	date: string;
 }
 const cacheKey = 'info';
